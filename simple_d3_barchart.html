@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>How to make a simple barchart</p>
+ <!--If you want to adjust the css directly in the html-->
+
+<!--D3.js drawinf-->
+
+
+
+ <!--A Bar Chart-->
+<script type="text/javascript">
+    var dodo = [10, 11, 14, 20, 20, 22, 30, 33, 45, 70];
+    var w = 1000;
+    var h = 200;
+    var barPadding = 1; //new
+    
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+        
+    svg.selectAll("rect")
+    .data(dodo)
+    .enter()
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 20)
+    .attr("height", 100)
+    .attr("x", function(d, i) {
+        return i * (w / dodo.length);
+    })
+    .attr("width", w / dodo.length - barPadding)
+    .attr("y", function(d){
+        return h - d;
+    })
+    .attr("height", function(d){
+        return d*4;
+    })
+    .attr("fill", "teal");
+
+</script>
+
+<h2>How</h2>
+<script type="text/javascript">
+    var dodo = [10, 11, 14, 20, 20, 22, 30, 33, 45, 51];
+    var w = 1000;
+    var h = 250;
+    var barPadding = 1; //new
+    
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+        
+    svg.selectAll("rect")
+    .data(dodo)
+    .enter()
+    .append("rect")
+    .attr("x", function(d, i) {
+        return i * (w / dodo.length);
+    })
+    .attr("y", function(d){
+        return h - (d*4);
+    })
+    .attr("width", w / dodo.length - barPadding)
+    .attr("height", function(d){
+        return d*4;
+    })
+    .attr("fill", function(d){
+        return "rgb(0, 0, " + Math.round(d*10) + ")";
+    });
+
+    svg.selectAll("text")
+    .data(dodo)
+    .enter()
+    .append("text")
+    .text(function(d){
+        return d;
+    })
+    .attr("x", function(d, i) {
+        return i * (w / dodo.length) + 45;
+    })
+    .attr("y", function(d){
+        return h - (d*4) + 15;
+    })
+    .attr("fill", "white")
+    .attr("font-size", "18px");
+
+</script>
+
+
+
+
+
+
+    
+</body>
+
+</html>
